@@ -112,6 +112,13 @@ void alarm_hand(int sig) {
 }
 
 int main() {
+    if (access("to_srv.txt", F_OK) == 0) {
+        if (remove("to_srv.txt") != 0) {
+            printf("ERROR_FROM_EX4\n");
+            exit(1);
+        }
+    }
+
     signal(SIGUSR1, handlerFunc);
     signal(SIGALRM, alarm_hand);
 
